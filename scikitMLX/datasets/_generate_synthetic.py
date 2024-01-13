@@ -22,9 +22,9 @@ def gen_swiss_roll(n_samples=100, *, noise=0.0, random_state=None, hole=False):
     x = t * mx.cos(t)
     z = t * mx.sin(t)
 
-    X = np.vstack((x, y, z))
-    X += noise * generator.standard_normal(size=(3, n_samples))
+    X = mx.stack((x, y, z), axis=0)
+    X += noise * generator.normal(size=(3, n_samples))
     X = X.T
-    t = np.squeeze(t)
+    t = mx.squeeze(t)
 
     return X, t
